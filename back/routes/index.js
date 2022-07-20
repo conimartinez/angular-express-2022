@@ -33,4 +33,18 @@ router.post('/agregar-libro', async (req, res) => {
 });
 
 
+/* GET buscar 
+    localhost:3000/api/buscar?termino=jajahd
+*/
+
+router.get('/buscar', async (req, res) => {
+    // Guardo en la variable termino lo que el usuario escribió en el form
+    const { termino } = req.query;
+    // Hago la consulta a la DB con ese dato
+    const results = await api.findBookByTitle(termino);
+
+    // Devuelvo el resultado de esa búsqueda en formato JSON
+    res.send(results);
+})
+
 module.exports = router;
